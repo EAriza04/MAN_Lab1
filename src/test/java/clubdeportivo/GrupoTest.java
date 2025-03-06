@@ -25,7 +25,7 @@ public class GrupoTest {
         // Arrange
         int nplazas= 1;
         int matriculados = 1;
-        int tarifa = -1;
+        double tarifa = -1;
 
         // Act + Assert
         assertThrows(ClubException.class, () -> new Grupo("1", "Fútbol", nplazas, matriculados, tarifa));
@@ -86,7 +86,7 @@ public class GrupoTest {
     @DisplayName("El método getPlazas devuelve la tarifa")
     public void getTarifa_DevuelveTarifa() {
         // Arrange
-        int tarifaEsperada = 20;
+        double tarifaEsperada = 20;
 
         // Act + Assert
         assertEquals(tarifaEsperada, g.getTarifa());
