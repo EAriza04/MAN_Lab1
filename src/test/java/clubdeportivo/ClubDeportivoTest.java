@@ -115,4 +115,15 @@ public class ClubDeportivoTest {
         // Act + Assert
         assertEquals(60, c.ingresos());
     }
+    @Test
+    @DisplayName("El método toString genera la cadena esperada")
+    public void toString_CadenaEsperada_GeneraStringCorrecto() throws ClubException {
+        // Arrange
+        String resultadoEsperado = "Deportes UMA --> [ (1 - Fútbol - 20.0 euros - P:10 - M:3) ]";
+        Grupo g = new Grupo("1","Fútbol", 10, 3, 20);
+
+        // Act
+        c.anyadirActividad(g);
+        assertEquals(resultadoEsperado, c.toString());
+    }
 }
