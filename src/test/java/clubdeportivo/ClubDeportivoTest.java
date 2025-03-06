@@ -106,7 +106,7 @@ public class ClubDeportivoTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("El método ingresos devuelve los ingresos totales del club")
     public void ingresos_DevuelveIngresos() throws ClubException {
         // Arrange
         String actividad = "Fútbol";
@@ -115,6 +115,7 @@ public class ClubDeportivoTest {
         // Act + Assert
         assertEquals(60, c.ingresos());
     }
+    
     @Test
     @DisplayName("El método toString genera la cadena esperada")
     public void toString_CadenaEsperada_GeneraStringCorrecto() throws ClubException {
