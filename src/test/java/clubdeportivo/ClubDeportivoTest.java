@@ -11,6 +11,7 @@ public class ClubDeportivoTest {
 
     private ClubDeportivo c;
 
+    // Arrange
     @BeforeEach
     public void init() throws ClubException{
          c = new ClubDeportivo("Deportes UMA");
@@ -75,4 +76,34 @@ public class ClubDeportivoTest {
         // Act + Assert
         assertThrows(ClubException.class, () -> c.anyadirActividad(g));
     }
+
+    @Test
+    @DisplayName("Matricular más personas que plazas libres eleva una excepción")
+    public void matricular_MasPersonasQuePlazasLibres_LanzaClubException() throws ClubException {
+        // Arrange
+        String actividad = "Fútbol";
+        int personas = 11;
+        c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> c.matricular(actividad, personas));
+    }
+
+    @Test
+    @DisplayName("Matricular menos personas que plazas matricula a todos")
+    public void matricular_MenosPersonasQuePlazasLibres_Deja0SinMatricular() throws ClubException {
+        // Arrange
+        String actividad = "Fútbol";
+        int personas = 11;
+        c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
+        c.anyadirActividad(new Grupo("2", actividad, 5, 0, 10));
+
+        // Act
+        c.matricular(actividad, personas);
+
+        // Assert
+        assertEquals(1, c.plazasLibres(actividad));
+    }
+
+    
 }
