@@ -14,7 +14,7 @@ public class GrupoTest {
     // Arrange
     @BeforeEach
     public void init() throws ClubException {
-        g = new Grupo("1","Fútbol", 10, 0, 20);
+        g = new Grupo("1","Fútbol", 10, 3, 20);
     }
 
     @Test
