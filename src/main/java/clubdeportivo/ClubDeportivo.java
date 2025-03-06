@@ -40,6 +40,10 @@ public class ClubDeportivo {
 			anyadirActividad(g);
 		} catch (NumberFormatException e) {
 			throw new ClubException("ERROR: formato de número incorrecto");
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new ClubException("ERROR: faltan datos");
+		} catch (NullPointerException e) {
+			throw new ClubException("ERROR: el grupo es nulo");
 		}
 	}
 
@@ -49,6 +53,9 @@ public class ClubDeportivo {
 		}
 		int pos = buscar(g);
 		if (pos == -1) { // El grupo es nuevo
+			if (ngrupos == grupos.length) {
+				throw new ClubException("ERROR: el club está lleno");
+			}
 			grupos[ngrupos] = g;
 			ngrupos++;
 		} else { // El grupo ya existe --> modificamos las plazas

@@ -40,6 +40,8 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 			super.anyadirActividad(g);
 		} catch (NumberFormatException e) {
 			throw new ClubException("ERROR: formato de número incorrecto");
+		} catch (NullPointerException e) {
+			throw new ClubException("ERROR: el grupo es nulo");
 		}
 	}
 	
