@@ -119,7 +119,7 @@ public class GrupoTest {
 
     @Test
     @DisplayName("Matricular personas aumenta el número de matriculados correctamente")
-    public void matricular_PersonaNueva_Anyadematriculado() throws ClubException{
+    public void matricular_PersonasNuevas_Anyadematriculado() throws ClubException{
         // Arrange
         int matriculadosAntes = g.getMatriculados();
         int Nmatricular = 5;
@@ -133,15 +133,15 @@ public class GrupoTest {
 
     @Test
     @DisplayName("Matricular personas con un valor incorrecto eleva una excepción")
-    public void matricular_PersonaNegativa_LanzaClubException() throws ClubException{
+    public void matricular_PersonasNegativas_LanzaClubException() throws ClubException{
         // Arrange
         int plazasLibres = g.plazasLibres();
-        int Nmatricular1 = -1;
-        int Nmatricular2 = plazasLibres+1;
+        int nMatricular1 = -1;
+        int nMatricular2 = plazasLibres+1;
 
         // Act + Assert
-        assertThrows(ClubException.class, () -> g.matricular(Nmatricular1));
-        assertThrows(ClubException.class, () -> g.matricular(Nmatricular2));
+        assertThrows(ClubException.class, () -> g.matricular(nMatricular1));
+        assertThrows(ClubException.class, () -> g.matricular(nMatricular2));
     }
 
     @Test
