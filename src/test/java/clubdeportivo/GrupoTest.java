@@ -1,6 +1,7 @@
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +31,21 @@ public class GrupoTest {
     }
 
     @Test
-    public void Matricular_Grupo_Anyadematriculado() throws ClubException{
+    @DisplayName("Actualizar negativas plazas eleva una excepción")
+    public void actualizarPlazas_ValorNegativo_Error() throws ClubException {
+        // Arrange
+        int n = -1;
+        
+        // Act
+        g.actualizarPlazas(n);
+
+        // Assert
+        assertThrows(ClubException.class, () -> g.getPlazas());
+    }
+
+    @Test
+    @DisplayName("Matricular personas aumenta el número de matriculados correctamente")
+    public void Matricular_PersonaNueva_Anyadematriculado() throws ClubException{
         // Arrange
         int matriculadosAntes = g.getMatriculados();
         int Nmatricular = 5;
@@ -41,5 +56,7 @@ public class GrupoTest {
         // Assert
         assertEquals(g.getMatriculados(), matriculadosAntes+Nmatricular);
     }
+
+
 
 }
