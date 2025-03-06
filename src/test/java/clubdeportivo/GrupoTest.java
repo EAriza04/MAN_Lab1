@@ -13,7 +13,7 @@ public class GrupoTest {
     // Arrange
     @BeforeEach
     public void init() throws ClubException {
-        g=new Grupo("1","Fútbol", 10, 0, 20);
+        g = new Grupo("1","Fútbol", 10, 0, 20);
     }
 
     @Test
@@ -30,11 +30,16 @@ public class GrupoTest {
     }
 
     @Test
-    public void Matricular_Grupo_Anyadematriculado(){
-        int p = g.plazasLibres();
+    public void Matricular_Grupo_Anyadematriculado() throws ClubException{
+        // Arrange
+        int matriculadosAntes = g.getMatriculados();
+        int Nmatricular = 5;
 
+        // Act
+        g.matricular(Nmatricular);
+
+        // Assert
+        assertEquals(g.getMatriculados(), matriculadosAntes+Nmatricular);
     }
-
-    
 
 }
