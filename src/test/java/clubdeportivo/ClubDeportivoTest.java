@@ -14,7 +14,7 @@ public class ClubDeportivoTest {
     // Arrange
     @BeforeEach
     public void init() throws ClubException{
-         c = new ClubDeportivo("Deportes UMA");
+        c = new ClubDeportivo("Deportes UMA");
     }
 
     @Test
@@ -58,8 +58,8 @@ public class ClubDeportivoTest {
     }
 
     @Test
-    @DisplayName("Añadir una actividad con datos erróneos eleva una excepción")
-    public void anyadirActividad_grupoNoValido_LanzaClubException() throws ClubException {
+    @DisplayName("Añadir una actividad con número de plazas no válido eleva una excepción")
+    public void anyadirActividad_NumeroDePlazasNoValido_LanzaClubException() throws ClubException {
         // Arrange
         String[] g = {"1", "Fútbol", "error", "3", "20"};
 
@@ -68,13 +68,46 @@ public class ClubDeportivoTest {
     }
 
     @Test
-    @DisplayName("Añadir una actividad con datos erróneos eleva una excepción")
+    @DisplayName("Añadir una actividad con datos incompletos eleva una excepción")
+    public void anyadirActividad_DatosIncompletos_LanzaClubException() throws ClubException {
+        // Arrange
+        String[] g = {"1", "Fútbol"};
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> c.anyadirActividad(g));
+    }
+
+    @Test
+    @DisplayName("Añadir una actividad con datos nulos eleva una excepción")
+    public void anyadirActividad_DatosNulos_LanzaClubException() throws ClubException {
+        // Arrange
+        String[] g = null;
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> c.anyadirActividad(g));
+    }
+
+    @Test
+    @DisplayName("Añadir una actividad con grupo nulo eleva una excepción")
     public void anyadirActividad_grupoNulo_LanzaClubException() throws ClubException {
         // Arrange
         Grupo g = null;
 
         // Act + Assert
         assertThrows(ClubException.class, () -> c.anyadirActividad(g));
+    }
+
+    @Test
+    @DisplayName("Añadir una actividad a un club lleno eleva una excepción")
+    public void anyadirActividad_ClubLleno_LanzaClubException() throws ClubException {
+        // Arrange
+        c = new ClubDeportivo("Deportes UMA", 1);
+        Grupo g1 = new Grupo("1", "Petanca", 10, 3, 20);
+        Grupo g2 = new Grupo("2", "Petanca", 10, 3, 20);
+        c.anyadirActividad(g1);
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> c.anyadirActividad(g2));
     }
 
     @Test
