@@ -31,16 +31,15 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Actualizar negativas plazas eleva una excepción")
-    public void actualizarPlazas_ValorNegativo_Error() throws ClubException {
+    @DisplayName("Actualizar plazas con un valor incorrecto eleva una excepción")
+    public void actualizarPlazas_ValorIncorrecto_LanzaClubException() throws ClubException {
         // Arrange
-        int n = -1;
-        
-        // Act
-        g.actualizarPlazas(n);
+        int n1 = -1;
+        int n2 = g.getMatriculados() - 1;
 
-        // Assert
-        assertThrows(ClubException.class, () -> g.getPlazas());
+        // Act + Assert
+        assertThrows(ClubException.class, () -> g.actualizarPlazas(n1));
+        assertThrows(ClubException.class, () -> g.actualizarPlazas(n2));
     }
 
     @Test
