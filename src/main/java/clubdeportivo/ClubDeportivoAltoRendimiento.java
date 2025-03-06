@@ -26,6 +26,9 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 	// El club de alto rendimiento tiene limitadas las plazas. Si el número de plazas que se recibe como parametro es mayor que el permitido, 
 	// se establece su valor al maximo permitido por grupo para el club.
 	public void anyadirActividad(String[] datos) throws ClubException {
+		if (datos == null) {
+			throw new ClubException("ERROR: el grupo es nulo");
+		}
 		if (datos.length<5) {
 			throw new ClubException ("ERROR: faltan datos");
 		}
@@ -40,8 +43,6 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 			super.anyadirActividad(g);
 		} catch (NumberFormatException e) {
 			throw new ClubException("ERROR: formato de número incorrecto");
-		} catch (NullPointerException e) {
-			throw new ClubException("ERROR: el grupo es nulo");
 		}
 	}
 	

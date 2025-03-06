@@ -72,6 +72,16 @@ private ClubDeportivoAltoRendimiento c;
         assertThrows(ClubException.class, () -> c.anyadirActividad(g));
     }
 
+    @Test
+    @DisplayName("Añadir una actividad con datos nullos eleva una excepción")
+    public void anyadirActividad_grupoNulo_LanzaClubException() throws ClubException {
+        // Arrange
+        String[] g = null;
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> c.anyadirActividad(g));
+    }
+
      @Test
     @DisplayName("El método ingresos devuelve los ingresos totales del club")
     public void ingresos_DevuelveIngresos() throws ClubException {
