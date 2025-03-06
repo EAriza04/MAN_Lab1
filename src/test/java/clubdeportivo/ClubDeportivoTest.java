@@ -105,5 +105,14 @@ public class ClubDeportivoTest {
         assertEquals(1, c.plazasLibres(actividad));
     }
 
-    
+    @Test
+    @DisplayName("")
+    public void ingresos_DevuelveIngresos() throws ClubException {
+        // Arrange
+        String actividad = "Fútbol";
+        c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
+
+        // Act + Assert
+        assertEquals(60, c.ingresos());
+    }
 }
