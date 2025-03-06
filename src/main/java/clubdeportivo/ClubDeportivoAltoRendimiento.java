@@ -1,3 +1,5 @@
+// Eduardo Ariza Abad y Enrique Ibáñez Rico
+
 package clubdeportivo;
 
 
@@ -26,7 +28,7 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 	// El club de alto rendimiento tiene limitadas las plazas. Si el número de plazas que se recibe como parametro es mayor que el permitido, 
 	// se establece su valor al maximo permitido por grupo para el club.
 	public void anyadirActividad(String[] datos) throws ClubException {
-		if (datos == null) {
+		if (datos == null) { // ERROR CORREGIDO 4: No se maneja la posible nulidad del array
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 		if (datos.length<5) {

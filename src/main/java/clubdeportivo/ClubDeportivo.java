@@ -1,3 +1,5 @@
+// Eduardo Ariza Abad y Enrique Ibáñez Rico
+
 package clubdeportivo;
 
 import java.util.StringJoiner;
@@ -40,9 +42,9 @@ public class ClubDeportivo {
 			anyadirActividad(g);
 		} catch (NumberFormatException e) {
 			throw new ClubException("ERROR: formato de número incorrecto");
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException e) { // ERROR CORREGIDO 1: No se maneja la longitud del array
 			throw new ClubException("ERROR: faltan datos");
-		} catch (NullPointerException e) {
+		} catch (NullPointerException e) { // ERROR CORREGIDO 2: No se maneja la posible nulidad del array
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 	}
@@ -53,7 +55,7 @@ public class ClubDeportivo {
 		}
 		int pos = buscar(g);
 		if (pos == -1) { // El grupo es nuevo
-			if (ngrupos == grupos.length) {
+			if (ngrupos == grupos.length) { // ERROR CORREGIDO 3: No se maneja el acceso a array
 				throw new ClubException("ERROR: el club está lleno");
 			}
 			grupos[ngrupos] = g;

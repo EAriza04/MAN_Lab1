@@ -1,3 +1,5 @@
+// Eduardo Ariza Abad y Enrique Ibáñez Rico
+
 package clubdeportivo;
 
 public class ClubException extends Exception{

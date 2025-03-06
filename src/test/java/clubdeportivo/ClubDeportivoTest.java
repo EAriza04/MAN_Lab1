@@ -1,3 +1,5 @@
+// Eduardo Ariza Abad y Enrique Ibáñez Rico
+
 package clubdeportivo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

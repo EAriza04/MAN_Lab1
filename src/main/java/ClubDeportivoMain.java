@@ -1,3 +1,5 @@
+// Eduardo Ariza Abad y Enrique Ibáñez Rico
+
 import clubdeportivo.ClubDeportivo;
 import clubdeportivo.ClubException;
 import clubdeportivo.Grupo;
