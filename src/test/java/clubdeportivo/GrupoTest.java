@@ -184,11 +184,13 @@ public class GrupoTest {
     public void equals_CompararGrupos_ComparaCorrectamente() throws ClubException {
         // Arrange
         Grupo g2 = new Grupo("1","Fútbol", 10, 3, 20);
-        Grupo g3 = new Grupo("1","Baloncesto", 10, 3, 20);
+        Grupo g3 = new Grupo("2","Fútbol", 10, 3, 20);
+        Grupo g4 = new Grupo("1","Baloncesto", 10, 3, 20);
         
         // Act + Assert
         assertTrue(g.equals(g2));
         assertFalse(g.equals(g3));
+        assertFalse(g.equals(g4));
     }
 
     @Test
