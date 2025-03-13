@@ -20,13 +20,25 @@ private ClubDeportivoAltoRendimiento c;
     }
     
     @Test
-    @DisplayName("Crear un club con valor negativo eleva una excepción")
-    public void constructor_ValorNegativo_LanzaClubException() {
+    @DisplayName("Crear un club con maximo no positivo eleva una excepción")
+    public void constructor_MaximoNoPositivo_LanzaClubException() {
         // Arrange
-        int n = -1;
+        int maximoNegativo = -1;
 
         // Act + Assert
-        assertThrows(ClubException.class, () -> new ClubDeportivoAltoRendimiento("Miembros negativos", 10, n));
+        assertThrows(ClubException.class, () -> new ClubDeportivoAltoRendimiento("Maximo Invalido", maximoNegativo, 10));
+        assertThrows(ClubException.class, () -> new ClubDeportivoAltoRendimiento("Maximo Invalido", 20, maximoNegativo, 10));
+    }
+
+    @Test
+    @DisplayName("Crear un club con incremento no positivo eleva una excepción")
+    public void constructor_IncrementoNoPositivo_LanzaClubException() {
+        // Arrange
+        int incrementoNegativo = -1;
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> new ClubDeportivoAltoRendimiento("Incremento Invalido", 10, incrementoNegativo));
+        assertThrows(ClubException.class, () -> new ClubDeportivoAltoRendimiento("Incremento Invalido", 20, 10, incrementoNegativo));
     }
 
     @Test
@@ -83,16 +95,17 @@ private ClubDeportivoAltoRendimiento c;
         assertThrows(ClubException.class, () -> c.anyadirActividad(g));
     }
 
-     @Test
+    @Test
     @DisplayName("El método ingresos devuelve los ingresos totales del club")
     public void ingresos_DevuelveIngresos() throws ClubException {
         // Arrange
         double esperado = 60*1.1;
         String actividad = "Fútbol";
-        c = new ClubDeportivoAltoRendimiento("Miembros negativos", 10, 10, 10);
+        c = new ClubDeportivoAltoRendimiento("Deportes UMA", 10, 10, 10);
+        String[] g = {"1", actividad, "10", "3", "20"};
 
         // Act
-        c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
+        c.anyadirActividad(g);
 
         // Act
         assertEquals(esperado, c.ingresos());

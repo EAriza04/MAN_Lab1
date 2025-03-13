@@ -21,11 +21,35 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("Crear un grupo con valores incorrectos eleva una excepción")
-    public void constructor_ValorIncorrecto_LanzaClubException() throws ClubException {
+    @DisplayName("Crear un grupo con plazas no positivas eleva una excepción")
+    public void constructor_PlazasNoPositivas_LanzaClubException() throws ClubException {
         // Arrange
-        int nplazas= 1;
-        int matriculados = 1;
+        int nplazas = -1;
+        int matriculados = 3;
+        double tarifa = 20;
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> new Grupo("1", "Fútbol", nplazas, matriculados, tarifa));
+    }
+
+    @Test
+    @DisplayName("Crear un grupo con matriculados negativos eleva una excepción")
+    public void constructor_MatriculadosNegativos_LanzaClubException() throws ClubException {
+        // Arrange
+        int nplazas = 10;
+        int matriculados = -1;
+        double tarifa = 20;
+
+        // Act + Assert
+        assertThrows(ClubException.class, () -> new Grupo("1", "Fútbol", nplazas, matriculados, tarifa));
+    }
+
+    @Test
+    @DisplayName("Crear un grupo con tarifa no positiva eleva una excepción")
+    public void constructor_TarifaNoPositiva_LanzaClubException() throws ClubException {
+        // Arrange
+        int nplazas = 10;
+        int matriculados = 3;
         double tarifa = -1;
 
         // Act + Assert
@@ -160,11 +184,21 @@ public class GrupoTest {
     public void equals_CompararGrupos_ComparaCorrectamente() throws ClubException {
         // Arrange
         Grupo g2 = new Grupo("1","Fútbol", 10, 3, 20);
-        Grupo g3 = new Grupo("2","Baloncesto", 10, 3, 20);
+        Grupo g3 = new Grupo("1","Baloncesto", 10, 3, 20);
         
         // Act + Assert
         assertTrue(g.equals(g2));
         assertFalse(g.equals(g3));
+    }
+
+    @Test
+    @DisplayName("Si se compara un grupo con un objeto que no es grupo, devuelve falso")
+    public void equals_CompararGrupoConNoGrupo_DevuelveFalso() throws ClubException {
+        // Arrange
+        ClubDeportivo ng = new ClubDeportivo("NotAGroup", 1);
+        
+        // Act + Assert
+        assertFalse(g.equals(ng));
     }
 
     @Test

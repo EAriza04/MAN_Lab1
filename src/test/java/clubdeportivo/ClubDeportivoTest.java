@@ -129,15 +129,18 @@ public class ClubDeportivoTest {
     public void matricular_MenosPersonasQuePlazasLibres_Deja0SinMatricular() throws ClubException {
         // Arrange
         String actividad = "Fútbol";
+        String actividad_dist = "Baloncesto";
         int personas = 11;
         c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
-        c.anyadirActividad(new Grupo("2", actividad, 5, 0, 10));
+        c.anyadirActividad(new Grupo("2", actividad_dist, 7, 2, 15));
+        c.anyadirActividad(new Grupo("3", actividad, 4, 0, 10));
+        c.anyadirActividad(new Grupo("4", actividad_dist, 5, 4, 17));
 
         // Act
         c.matricular(actividad, personas);
 
         // Assert
-        assertEquals(1, c.plazasLibres(actividad));
+        assertEquals(0, c.plazasLibres(actividad));
     }
 
     @Test
