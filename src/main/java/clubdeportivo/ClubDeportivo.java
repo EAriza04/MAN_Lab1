@@ -83,7 +83,7 @@ public class ClubDeportivo {
 			throw new ClubException("ERROR: no hay suficientes plazas libres para esa actividad en el club.");
 		}
 		int i = 0;
-		while (i < ngrupos && npersonas > 0) {
+		while (npersonas > 0) {	// Quitada la condición de i < ngrupos que no era necesaria
 			if (actividad.equals(grupos[i].getActividad())) {
 				int plazasGrupo = grupos[i].plazasLibres();
 				if (npersonas >= plazasGrupo) {
@@ -91,6 +91,7 @@ public class ClubDeportivo {
 					npersonas -= plazasGrupo;
 				} else {
 					grupos[i].matricular(npersonas);
+					npersonas = 0;	// Añadida esta línea que no actualizaba la variable npersonas
 				}
 			}
 			i++;

@@ -130,7 +130,7 @@ public class ClubDeportivoTest {
         // Arrange
         String actividad = "Fútbol";
         String actividad_dist = "Baloncesto";
-        int personas = 11;
+        int personas = 10;
         c.anyadirActividad(new Grupo("1", actividad, 10, 3, 20));
         c.anyadirActividad(new Grupo("2", actividad_dist, 7, 2, 15));
         c.anyadirActividad(new Grupo("3", actividad, 4, 0, 10));
@@ -140,7 +140,7 @@ public class ClubDeportivoTest {
         c.matricular(actividad, personas);
 
         // Assert
-        assertEquals(0, c.plazasLibres(actividad));
+        assertEquals(1, c.plazasLibres(actividad));
     }
 
     @Test
